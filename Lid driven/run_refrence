@@ -1,0 +1,66 @@
+import os
+import torch
+import torch.optim as optim
+import numpy as np
+import pandas as pd
+
+from data_sampler import data_aggregator
+from PINN_module_flavours import NavierStokesPINN
+from Lid_cavity_Physics_geo import LidDrivenCavity
+
+
+data_folder = './data'
+data_aggregator(mode='h')
+
+reference_df = data_aggregator(
+        folder_path=data_folder, 
+        sample_ratio=1.0, 
+        mode='r', 
+        inspection=False
+    )
+print(reference_df)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = NavierStokesPINN(in_features=3, num_layers=6, num_hidden=60, out_features=3).to(device)
+cavity = LDC_solver_weightannealing(Re=100.0, U_lid=1.0, L=1.0, device=device)
+
+
+print(type(cavity))
+loss_dict,loss = cavity.LDC_solver(model=model,data_df=reference_df)
+print(lossloss,_dict)
+
+# Target convergence threshold
+optimizer = optim.Adam(model.parameters(), lr=1e-2)
+target_error = 1e-3
+epoch = 0
+
+model.train()
+print(f"Beginning optimization until total loss < {target_error:.1e}...\n")
+
+while True:
+    optimizer.zero_grad()
+
+    # Unified forward pass: slices data, computes autograd residuals, BCs, ICs, and data loss
+    total_loss, losses = cavity.LDC_solver(model, reference_df)
+
+    # Backpropagation and optimization step
+    total_loss.backward()
+    optimizer.step()
+
+    # Logging progress
+    if epoch % 100 == 0:
+        print(
+            f"Epoch {epoch:5d} | "
+            f"Total: {total_loss.item():.5e} | "
+            f"PDE: {losses['pde'].item():.4e} | "
+            f"BC: {losses['bc'].item():.4e} | "
+            f"IC: {losses['ic'].item():.4e} | "
+            f"Data: {losses['data'].item():.4e}"
+        )
+
+    # Convergence check
+    if total_loss.item() < target_error:
+        print(f"\nConverged at Epoch {epoch}!")
+        print(f"Final Total Loss: {total_loss.item():.6e} < {target_error:.1e}")
+        break
+
+    epoch += 1
