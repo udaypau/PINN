@@ -16,7 +16,7 @@ Built entirely in PyTorch, this repository serves as a modular playground and te
 ## 🤝 Open Source & Contributions
 This project is entirely open-source, built with the hope that it can serve as a helpful baseline or reference for other students, researchers, and engineers curious about scientific machine learning. Please feel absolutely free to fork this repository, use the code for your own experiments, adapt the architectures, or build something entirely new on top of it.
 
-Because this is a student project and a continuous learning journey, help, advice, and contributions are deeply appreciated! Whether you want to point out a bug, suggest a code optimization, improve the documentation, or discuss the mathematical nuances of phase space contraction in neural networks, I would love to hear from you.
+Because this is a student project and a continuous learning journey, help, advice, and contributions are deeply appreciated! Whether you want to point out a bug, suggest a code optimization, improve the documentation, or larp on the mathematical nuances of phase space contraction in 6d dimension ultra quasi continuum of competitive performative feminism , I would love to hear from you.
 
 Feel free to open an issue, submit a pull request, or just reach out. Let's learn and build together!
 
