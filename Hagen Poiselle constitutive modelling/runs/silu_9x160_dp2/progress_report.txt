@@ -1,0 +1,27 @@
+============================================================
+PROGRESS REPORT  -  silu_9x160_dp2
+============================================================
+Device                  : cpu
+Network                 : 3 layers x 160 units, silu
+Pressure bounds (p*)    : p_in = 0.0, p_out = -2.0
+------------------------------------------------------------
+Adam iterations         : 619  (stopped: loss < SWITCH_LOSS (1e-04))
+L-BFGS rounds           : 4
+L-BFGS iterations       : 228
+TOTAL iterations        : 847
+Time taken              : 188.0 s
+------------------------------------------------------------
+Best case found at      : L-BFGS round 2
+Best unweighted loss    : 1.073e-06
+Loss terms at best case :
+    cont    = 5.910e-08
+    momx    = 8.096e-07
+    momy    = 1.310e-07
+    constP  = 6.864e-08
+    wall    = 1.380e-09
+    pres    = 3.138e-09
+------------------------------------------------------------
+RMS vs exact solution (500 random points):
+    u* = 5.745e-01
+    p* = 4.069e-05
+============================================================
