@@ -1,0 +1,29 @@
+============================================================
+PROGRESS REPORT  -  constitutive_silu_9x160
+============================================================
+Device                  : cpu
+Network                 : 9 layers x 160 units, silu
+Constitutive law        : Newtonian, mu = 1.0, incompressible
+Pressure bounds (p*)    : p_in = 0.0, p_out = -2.0
+------------------------------------------------------------
+Adam iterations         : 2223  (stopped: learning rate reached MIN_LR)
+L-BFGS rounds           : 3
+L-BFGS iterations       : 600
+TOTAL iterations        : 2823
+Time taken              : 10250.7 s
+------------------------------------------------------------
+Best case found at      : Adam epoch 11
+Best unweighted loss    : 1.746e+00
+Loss terms at best case :
+    cont    = 4.910e-06
+    momx    = 7.147e-02
+    momy    = 1.033e-04
+    constP  = 7.150e-02
+    wall    = 2.135e-03
+    pres    = 1.662e+00
+------------------------------------------------------------
+RMS vs exact solution (500 random points):
+    u* = 7.633e-01
+    v* = 1.000e-10
+    p* = 8.925e-01
+============================================================
